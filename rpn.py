@@ -21,7 +21,8 @@ def calculate(arg):
 
 def main():
 	while True:
-		calculate(input("rpn calc> "))
+		result = calculate(input("rpn calc> "))
+		print(result)
 
 if __name__ == '__main__': # Note that's underscore underscore n a m e...
 	main()
