@@ -13,12 +13,16 @@ def calculate(arg):
 			value = int(token)
 			stack.append(value)
 		except ValueError:
-			val1 = stack.pop()
 			val2 = stack.pop()
+			val1 = stack.pop()
 			if token == '+':
 				result = val1 + val2
 			elif token == '-':
-				result = val2 - val1
+				result = val1 - val2
+			elif token == '*':
+				result = val1 * val2
+			elif token == '/':
+				result = val1 / val2
 
 			stack.append(result)
 			return stack[0]
