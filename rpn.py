@@ -3,6 +3,9 @@
 import operator
 
 
+def factorial(arg1):
+    return 1 if (arg1==1 or arg1==0) else arg1 * factorial(arg1 - 1)
+
 operators = {
     '+': operator.add,
     '-': operator.sub,
@@ -13,7 +16,8 @@ operators = {
     '%': operator.truediv,
     '&': operator.and_,
     '|': operator.or_,
-    '~': operator.inv,    
+    '~': operator.inv,
+    '!': factorial,
 }
 
 def calculate(myarg):
@@ -24,20 +28,19 @@ def calculate(myarg):
             stack.append(token)
         except ValueError:
             function = operators[token]
-            if token is '~':
+            # only for operations with ONE operand
+            if token is '!' or token is '~':
                 arg1 = stack.pop()
                 result = function(arg1)
+                stack.append(result)               
+            # everything else      
+            else:          
+                arg2 = stack.pop()            
+                arg1 = stack.pop()
+                result = function(arg1, arg2)
+                if token is '%':
+                    result = result * 100
                 stack.append(result)
-                print(stack)
-                if len(stack) != 1:
-                    raise TypeError("Too many parameters")
-                return stack.pop()
-            arg2 = stack.pop()            
-            arg1 = stack.pop()
-            result = function(arg1, arg2)
-            if token is '%':
-                result = result * 100
-            stack.append(result)
         print(stack)
     if len(stack) != 1:
         raise TypeError("Too many parameters")
