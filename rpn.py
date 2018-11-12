@@ -4,7 +4,10 @@ import operator
 
 
 def factorial(arg1):
-    return 1 if (arg1==1 or arg1==0) else arg1 * factorial(arg1 - 1)
+    if (arg1==1 or arg1==0):
+        return 1
+    else:
+        return arg1 * factorial(arg1 - 1)
 
 operators = {
     '+': operator.add,
