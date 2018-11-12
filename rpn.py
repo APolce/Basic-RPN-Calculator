@@ -9,6 +9,8 @@ operators = {
     '*': operator.mul,
     '/': operator.truediv,
     '^': operator.pow,
+    '//': operator.floordiv,
+    '%': operator.truediv,
 }
 
 def calculate(myarg):
@@ -22,6 +24,8 @@ def calculate(myarg):
             arg2 = stack.pop()
             arg1 = stack.pop()
             result = function(arg1, arg2)
+            if token is '%':
+                result = result * 100
             stack.append(result)
         print(stack)
     if len(stack) != 1:
