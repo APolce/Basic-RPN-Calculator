@@ -11,6 +11,9 @@ operators = {
     '^': operator.pow,
     '//': operator.floordiv,
     '%': operator.truediv,
+    '&': operator.and_,
+    '|': operator.or_,
+    '~': operator.inv,    
 }
 
 def calculate(myarg):
@@ -21,7 +24,15 @@ def calculate(myarg):
             stack.append(token)
         except ValueError:
             function = operators[token]
-            arg2 = stack.pop()
+            if token is '~':
+                arg1 = stack.pop()
+                result = function(arg1)
+                stack.append(result)
+                print(stack)
+                if len(stack) != 1:
+                    raise TypeError("Too many parameters")
+                return stack.pop()
+            arg2 = stack.pop()            
             arg1 = stack.pop()
             result = function(arg1, arg2)
             if token is '%':
