@@ -25,3 +25,11 @@ class TestBasics(unittest.TestCase):
 	def test_exp(self):
 		result = rpn.calculate("2 3 ^")
 		self.assertEqual(8, result)
+
+	def test_percent(self):
+		result = rpn.calculate("3 5 %")
+		self.assertEqual(60, result)
+
+	def test_int_division(self):
+		result = rpn.calculate("5 2 //")
+		self.assertEqual(2, result)
