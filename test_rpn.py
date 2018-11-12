@@ -51,3 +51,9 @@ class TestBasics(unittest.TestCase):
 		self.assertEqual(-23, result)
 		result = rpn.calculate("14 ~")
 		self.assertEqual(-15, result)
+
+	def test_factorial(self):
+		result = rpn.calculate("5 !")
+		self.assertEqual(120, result)
+		result = rpn.calculate("4 !")
+		self.assertEqual(24, result)
